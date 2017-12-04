@@ -51,11 +51,10 @@ concurrenthashmap（简称chm） 是java1.5新引入的java.util.concurrent包�
         }
         这里我想和hashmap对比来分析，因为他们长得很像
         hashmap是entry<K,v>[]，而concurrenthashmap就是segments<K,v>[].
-        concurenthashmap的结构是这样的：http://images2015.cnblogs.com/blog/167213/201608/167213-20160823181322542-947348953.png
         可以说每一个segment都是一个hashmap，想要进入segment还需要获取对应的锁。默认conccurrenthashmap的segment数是16.每个segment内的hashentry数组大小也是16个。threadshord是16*0.75
         
 
-concurrenthashmap又是如何定位的呢
+###concurrenthashmap又是如何定位的呢
 
         先看看chm的hash方法        
         private int hash(Object k) {

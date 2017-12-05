@@ -79,7 +79,33 @@ concurrenthashmap（简称chm） 是java1.5新引入的java.util.concurrent包�
         这里对key的hash值再哈希了一次。使用的方法是wang/jenkins的哈希算法
         这里再hash是为了减少hash冲突。如果不这样做的话，会出现大多数值都在一个segment上，这样就失去了分段锁的意义。
         以上代码只是算出了key的新的hash值，但是怎么用这个hash值定位呢
-        
+        如果我们要取得一个值，首先我们肯定需要先知道哪个segment，然后再知道hashentry的index，最后一次循环遍历该index下的元素
+        确定segment，：(h >>> segmentShift) & segmentMask。默认使用h的前4位，segmentMask为15
+        确定index：(tab.length - 1) & h  hashentry的长度减1，用之前确定了sement的新h计算
+        循环：for (HashEntry<K,V> e = (HashEntry<K,V>) UNSAFE.getObjectVolatile
+                                (tab, ((long)(((tab.length - 1) & h)) << TSHIFT) + TBASE);
+                            e != null; e = e.next)
+                            
+          比较：if ((k = e.key) == key || (e.hash == h && key.equals(k)))
+                                 return e.value;
+     
+     
+### concurrenthashmap put操作
+        public V put(K key, V value) {
+                Segment<K,V> s;
+                if (value == null)
+                    throw new NullPointerException();
+                int hash = hash(key);
+                int j = (hash >>> segmentShift) & segmentMask;
+                if ((s = (Segment<K,V>)UNSAFE.getObject          // nonvolatile; recheck
+                     (segments, (j << SSHIFT) + SBASE)) == null) //  in ensureSegment
+                    s = ensureSegment(j);
+                return s.put(key, hash, value, false);
+            }   
+            在jdk中，native方法的实现是没办法看的，请下载openjdk来看。在put方法中实际是需要判断是否需要扩容的
+            扩容的时机选在阀值（threadshold）装满时，而不像hashmap是在装入后，再判断是否装满并扩容
+            这里就是concurrenthashmap的高明之处，有可能会出现扩容后就没有新数据的情况
+            
     思考：
     1.hashmap的默认大小是1<<4,即16，但是concurrenthashmap却直接16.
     

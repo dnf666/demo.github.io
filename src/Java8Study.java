@@ -6,14 +6,14 @@ import java.util.List;
  */
 public class Java8Study {
     public static void main(String[] args) {
-        lambdaTest();
+        lambdaTestList();
     }
 
 
     /**
-     * lambda表达式的魅力
+     * lambda表达式在集合中的魅力
      */
-    public static void lambdaTest(){
+    public static void lambdaTestList(){
         List<String> list = new ArrayList<String>();
         list.add("1");
         list.add("2");
@@ -22,4 +22,19 @@ public class Java8Study {
         list.forEach((play)-> System.out.println(play));
     }
 
+    /**
+     * 替代匿名内部类
+     */
+    public static void lambdaTestNonInnerClass(){
+        testInnerClass(()-> System.out.println("test1"));
+
+    }
+    public static void testInnerClass(TestClass testClass){
+        System.out.println("start test");
+    }
+
+
+}
+interface TestClass{
+   void lalla();
 }

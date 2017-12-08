@@ -104,5 +104,37 @@ tags:
     - 代码块：就是用”{}”包含着的代码。当代码块内代码只有一行时，花括号可以省略，且代码块内分号省略
     
     以下是几个使用场景
-    1. 代替匿名内部类
-                   
+    1. 实现runnable接口
+    
+    private static void lambdaTestRunnable() {
+            //正常使用
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("start");
+                }
+            }).start();
+            
+            //lambda使用
+            new Thread(()-> System.out.println("start")).start();
+        }
+        
+        
+    2.在集合中使用迭代
+        public static void lambdaTestList(){
+                List<String> list = new ArrayList<String>();
+                list.add("1");
+                list.add("2");
+                list.add("3");
+                list.add("4");
+                //正常使用迭代
+                for (String play: list){
+                    System.out.println(play);
+                }
+                //lambda
+                list.forEach((play)-> System.out.println(play));
+            }
+
+    
+
+注：lambda表达式只针对函数式接口，也就是只有一个抽象方法（其余方法随意）的接口

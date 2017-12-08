@@ -5,8 +5,24 @@ import java.util.List;
  * java8的新特性学习
  */
 public class Java8Study {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         lambdaTestList();
+        lambdaTestNonInnerClass();
+        lambdaTestRunnable();
+    }
+
+    private static void lambdaTestRunnable() {
+        //正常使用
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("start");
+            }
+        }).start();
+
+        //lambda使用
+        new Thread(()-> System.out.println("start")).start();
     }
 
 
@@ -19,6 +35,11 @@ public class Java8Study {
         list.add("2");
         list.add("3");
         list.add("4");
+        //正常使用迭代
+        for (String play: list){
+            System.out.println(play);
+        }
+        //lambda
         list.forEach((play)-> System.out.println(play));
     }
 

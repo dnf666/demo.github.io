@@ -168,6 +168,48 @@ tags:
     }
 
 
-    
+#### 4. lambda表达式的map和reduce示例
+     /**
+     * lambda表达式的map和reduce
+     */
+    private static void lambdaTestMapAndReduce() {
+        String s1 = "1";
+        String s2 = "2";
+        String s3 = "3";
+        String s4 = "4";
+        String s5 = "5";
+        List<String> list = Arrays.asList(s1, s2, s3, s4, s5);
+        //正常情况
+        for (String s:list)
+        {
+            System.out.println(s+"2");
+        }
+        //lambda表达式
+        list.stream().map((str)->str+"2").forEach((str)-> System.out.println(str));
+        Integer i1 = 1;
+         Integer i2 = 2;
+         Integer i3 = 3;
+         Integer i4 = 4;
+         Integer i5 = 5;
+         Integer i6 = 6;
+        List<Integer> list1 = Arrays.asList(i1,i2,i3,i4,i5,i6);
+        Integer i = list1.stream().map((str)->str+1).reduce((sum,cost)->sum+cost).get();//get方法是获取到reduce操作结果
+        System.out.println(i);
+    }
+#### 5.lambda表达式过滤一个String列表
+    /**
+     * lambda表达式过滤一个String列表
+     */
+    private static void lambdaTestString() {
+         String s1 = "1";
+        String s2 = "2";
+        String s3 = "3";
+        String s4 = "4";
+        String s5 = "5";
+        List<String> list = Arrays.asList(s1, s2, s3, s4, s5);
+        //去除字符串为1的元素
+        List<String> list1 = list.stream().filter((x)->!x.equals("1")).collect(Collectors.toList());//collect方法将stream对象转换成list或set或hashmap或currenthashmap
+        list1.forEach((x)-> System.out.println(x));
+    }
 
 注：lambda表达式只针对函数式接口，也就是只有一个抽象方法（其余方法随意）的接口

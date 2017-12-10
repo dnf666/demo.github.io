@@ -104,7 +104,7 @@ tags:
     - 代码块：就是用”{}”包含着的代码。当代码块内代码只有一行时，花括号可以省略，且代码块内分号省略
     
     以下是几个使用场景
-    1. 实现runnable接口
+### 1. 实现runnable接口
     
     private static void lambdaTestRunnable() {
             //正常使用
@@ -120,8 +120,10 @@ tags:
         }
         
         
-    2.在集合中使用迭代
+#### 2.在集合中使用迭代
+        
         public static void lambdaTestList(){
+        
                 List<String> list = new ArrayList<String>();
                 list.add("1");
                 list.add("2");
@@ -134,6 +136,37 @@ tags:
                 //lambda
                 list.forEach((play)-> System.out.println(play));
             }
+            
+            
+####3.在predicate接口使用
+
+        private static void lambdaTestPredicate() {
+        String s1 = "1";
+        String s2 = "2";
+        String s3 = "3";
+        String s4 = "4";
+        String s5 = "5";
+        List<String> list = Arrays.asList(s1,s2,s3,s4,s5);
+        //正常情况
+        for(String s:list){
+            if (s.startsWith("1")){
+                System.out.println(s);
+            }
+        }
+
+        //lambda
+        filter(list,(str)->str.startsWith("1"));
+
+    }
+
+    public  static void filter(List<String> names, Predicate<String> condition){
+        for (String name : names){
+            if(condition.test(name)){
+                System.out.println(name);
+            }
+        }
+    }
+
 
     
 

@@ -211,5 +211,10 @@ tags:
         List<String> list1 = list.stream().filter((x)->!x.equals("1")).collect(Collectors.toList());//collect方法将stream对象转换成list或set或hashmap或currenthashmap
         list1.forEach((x)-> System.out.println(x));
     }
-
+### lambda 使用distinct去重
+    public static void lambdaTestDistinct(){
+        List<Integer> list = Arrays.asList(2,3,4,56,1,2,3);
+        List list1 = list.stream().distinct().collect(Collectors.toList());
+        System.out.println(list1);
+    }
 注：lambda表达式只针对函数式接口，也就是只有一个抽象方法（其余方法随意）的接口

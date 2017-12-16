@@ -13,9 +13,10 @@ public class Java8Study {
         lambdaTestNonInnerClass();
         lambdaTestRunnable();
         lambdaTestPredicate();*/
-        lambdaTestMapAndReduce();
-        lambdaTestString();
-
+//        lambdaTestMapAndReduce();
+//        lambdaTestString();
+//        lambdaTestDistinct();
+            lambdaTestSum();
     }
 
     /**
@@ -142,10 +143,30 @@ public class Java8Study {
 
     }
 
+    /**
+     * 用distinct方法去除重复元素
+     */
+    public static void lambdaTestDistinct(){
+        List<Integer> list = Arrays.asList(2,3,4,56,1,2,3);
+        List list1 = list.stream().distinct().collect(Collectors.toList());
+        System.out.println(list1);
+    }
     public static void testInnerClass(TestClass testClass) {
         System.out.println("start test");
     }
 
+
+    /**
+     * 用lambda表达式实现求java的最大值，和，最小值，平均数
+     */
+    public static void lambdaTestSum(){
+        List<Integer> primes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+        IntSummaryStatistics stats = primes.stream().mapToInt((x)->x).summaryStatistics();
+        System.out.println("Highest prime number in List : " + stats.getMax());
+        System.out.println("Lowest prime number in List : " + stats.getMin());
+        System.out.println("Sum of all prime numbers : " + stats.getSum());
+        System.out.println("Average of all prime numbers : " + stats.getAverage());
+    }
 
 }
 

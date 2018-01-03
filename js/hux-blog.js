@@ -35,10 +35,10 @@ $(document).ready(function() {
 
 // responsive embed videos
 $(document).ready(function() {
-    $('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-    $('iframe[src*="youtube.com"]').addClass('embed-responsive-item');
-    $('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-    $('iframe[src*="vimeo.com"]').addClass('embed-responsive-item');
+    $('iframe[邓诗颖*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+    $('iframe[邓诗颖*="youtube.com"]').addClass('embed-responsive-item');
+    $('iframe[邓诗颖*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+    $('iframe[邓诗颖*="vimeo.com"]').addClass('embed-responsive-item');
 });
 
 // Navigation Scripts to Show Header on Scroll-Up

@@ -12,7 +12,7 @@ Icon
 complier
 .idea
 dnf666.github.io.iml
-
+lib/*
 # Thumbnails
 ._*
 

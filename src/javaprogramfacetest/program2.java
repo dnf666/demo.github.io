@@ -16,6 +16,16 @@ public class program2 {
     }
 
     private static void myMethod() {
+//        int j = 0;
+//        for (int i = 0; i <100 ; i++) {
+//            j=j++;
+//
+//        }
+        int i = 0;
+        i = i+++ ++i;
+        System.out.println(i);
+//        System.out.println(j);
         y=x++ + ++x;
+
     }
 }

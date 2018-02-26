@@ -40,7 +40,13 @@ tags:
         
         初始化一个xmlbeandefinitionreader。用来读取xml的beandefinition
         
-    
+#### 什么是spring
+###使用spring的好处
+### 什么是控制反转，什么是依赖注入
+### beanfactory和applicationcontext的区别
+### spring bean的生命周期
+### spring的各种作用域范围
+### spring的单例是线程安全的吗    
        
     
     
